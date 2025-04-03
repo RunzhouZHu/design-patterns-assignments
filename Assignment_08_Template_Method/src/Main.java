@@ -1,5 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
+
+        int numberOfPlayers = 5;
+        int playerInTurn = 0;
+        while (true) {
+            playerInTurn = ++playerInTurn % numberOfPlayers;
+            System.out.println(playerInTurn);
+        }
     }
 }
