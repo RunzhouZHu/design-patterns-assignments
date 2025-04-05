@@ -1,0 +1,6 @@
+public enum MessageType {
+    COMPENSATION_CLAM,
+    CONTACT_REQUEST,
+    DEVELOPER_SUGGESTION,
+    GENERAL_FEEDBACK,
+}
