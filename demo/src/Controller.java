@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Controller {
@@ -19,6 +20,9 @@ public class Controller {
     public void setOption(int optionNumber, int choice) {
         saveToHistory();
         model.setOption(optionNumber, choice);
+        // assignment
+        saveToRedo();
+
     }
 
     public int getOption(int optionNumber) {
@@ -28,6 +32,9 @@ public class Controller {
     public void setIsSelected(boolean isSelected) {
         saveToHistory();
         model.setIsSelected(isSelected);
+
+        //
+        saveToRedo();
     }
 
     public boolean getIsSelected() {
@@ -42,7 +49,8 @@ public class Controller {
             gui.updateGui();
 
             // assignment
-            redoList.add(previousState);
+            redoList.add(history.getLast());
+            printLists();
         }
     }
 
@@ -55,10 +63,31 @@ public class Controller {
     public void redo() {
         if (!redoList.isEmpty()) {
             System.out.println("Memento found in redoList");
-            IMemento previousState = redoList.removeFirst();
+            IMemento previousState = redoList.removeLast();
             model.restoreState(previousState);
             gui.updateGui();
             history.add(previousState);
+
+            printLists();
+        }
+    }
+
+    private void saveToRedo() {
+        redoList.clear();
+        IMemento currentState = model.createMemento();
+        redoList.add(currentState);
+    }
+
+    public void printLists() {
+        System.out.println("-------------------history");
+        for (IMemento m : history) {
+            System.out.println(Arrays.toString(((Memento) m).getOptions()));
+            System.out.println(((Memento) m).isSelected());
+        }
+        System.out.println("------------------redoList");
+        for (IMemento m : redoList) {
+            System.out.println(Arrays.toString(((Memento) m).getOptions()));
+            System.out.println(((Memento) m).isSelected());
         }
     }
 }

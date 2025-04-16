@@ -50,6 +50,9 @@ public class Gui extends Application {
         // call controller when the CheckBox is clicked
         checkBox.setOnAction(event -> {
             controller.setIsSelected(checkBox.isSelected());
+
+            //
+            controller.printLists();
         });
 
         // Set the HBox to be the root of the Scene
