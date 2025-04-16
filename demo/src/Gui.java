@@ -3,10 +3,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 
 public class Gui extends Application {
 
@@ -16,6 +18,8 @@ public class Gui extends Application {
     private ColorBox colorBox2;
     private ColorBox colorBox3;
     private CheckBox checkBox;
+
+    private ListView<IMemento> listView;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -50,9 +54,6 @@ public class Gui extends Application {
         // call controller when the CheckBox is clicked
         checkBox.setOnAction(event -> {
             controller.setIsSelected(checkBox.isSelected());
-
-            //
-            controller.printLists();
         });
 
         // Set the HBox to be the root of the Scene
@@ -75,6 +76,21 @@ public class Gui extends Application {
         stage.setScene(scene);
         stage.setTitle("Memento Pattern Example");
         stage.show();
+
+        //
+        listView = new ListView<>();
+
+        listView.setOnMouseClicked(event -> {
+            System.out.println("Mouse clicked");
+            controller.restore(listView.getSelectionModel().getSelectedItem());
+        });
+
+        Stage stage2 = new Stage();
+        Scene scene2 = new Scene(listView);
+
+        stage2.setScene(scene2);
+        stage2.setTitle("Memento History Window");
+        stage2.show();
     }
 
     public void updateGui() {
@@ -83,5 +99,8 @@ public class Gui extends Application {
         colorBox2.setColor(controller.getOption(2));
         colorBox3.setColor(controller.getOption(3));
         checkBox.setSelected(controller.getIsSelected());
+
+        //
+        listView.setItems(controller.getHistory());
     }
 }

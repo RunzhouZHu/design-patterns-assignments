@@ -1,5 +1,7 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Controller {
@@ -20,9 +22,10 @@ public class Controller {
     public void setOption(int optionNumber, int choice) {
         saveToHistory();
         model.setOption(optionNumber, choice);
-        // assignment
-        saveToRedo();
 
+        // assignment
+        clearRedoList();
+        gui.updateGui();
     }
 
     public int getOption(int optionNumber) {
@@ -33,8 +36,9 @@ public class Controller {
         saveToHistory();
         model.setIsSelected(isSelected);
 
-        //
-        saveToRedo();
+        // assignment
+        clearRedoList();
+        gui.updateGui();
     }
 
     public boolean getIsSelected() {
@@ -45,12 +49,13 @@ public class Controller {
         if (!history.isEmpty()) {
             System.out.println("Memento found in history");
             IMemento previousState = history.removeLast();
+
+            // <assignment>
+            addToRedoList(previousState);
+            // </assignment>
+
             model.restoreState(previousState);
             gui.updateGui();
-
-            // assignment
-            redoList.add(history.getLast());
-            printLists();
         }
     }
 
@@ -59,7 +64,7 @@ public class Controller {
         history.add(currentState);
     }
 
-    // assignment
+    // <assignment>
     public void redo() {
         if (!redoList.isEmpty()) {
             System.out.println("Memento found in redoList");
@@ -67,27 +72,27 @@ public class Controller {
             model.restoreState(previousState);
             gui.updateGui();
             history.add(previousState);
-
-            printLists();
         }
     }
 
-    private void saveToRedo() {
+    private void addToRedoList(IMemento m) {
+            IMemento currentState = model.createMemento();
+            redoList.add(currentState);
+    }
+
+    private void clearRedoList() {
         redoList.clear();
-        IMemento currentState = model.createMemento();
-        redoList.add(currentState);
     }
 
-    public void printLists() {
-        System.out.println("-------------------history");
-        for (IMemento m : history) {
-            System.out.println(Arrays.toString(((Memento) m).getOptions()));
-            System.out.println(((Memento) m).isSelected());
-        }
-        System.out.println("------------------redoList");
-        for (IMemento m : redoList) {
-            System.out.println(Arrays.toString(((Memento) m).getOptions()));
-            System.out.println(((Memento) m).isSelected());
-        }
+    public ObservableList<IMemento> getHistory() {
+        return FXCollections.observableList(history);
     }
+
+    public void restore(IMemento m) {
+        model.restoreState(m);
+        gui.updateGui();
+        clearRedoList();
+    }
+
+    // </ assignment>
 }

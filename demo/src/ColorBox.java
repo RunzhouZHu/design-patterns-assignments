@@ -18,9 +18,6 @@ public class ColorBox {
         rectangle.setOnMouseClicked(event -> {
             changeColor();
             controller.setOption(id, colorIndex);
-
-            //
-            controller.printLists();
         });
     }
 
