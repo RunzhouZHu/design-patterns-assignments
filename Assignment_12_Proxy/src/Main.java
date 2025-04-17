@@ -1,7 +1,7 @@
 import java.nio.file.AccessDeniedException;
 
 public class Main {
-    public static void main(String[] args) throws AccessDeniedException, ClassNotFoundException {
+    public static void main(String[] args){
         Library library = new Library();
         DocumentInterface unprotectedDocument1 = new  Document("1-1-1", "2025-04-17", "Document 1 content.");
         DocumentInterface protectedDocument1 = new DocumentProxy("2-1-1", "2025-04-17", "Document 2 content.");
@@ -18,6 +18,10 @@ public class Main {
         service.addAccessPair(user2.getUsername(), protectedDocument2.getIdentifier());
 
         //
+        System.out.println("Document not found:");
+        library.searchDocument("3-3-3", user1);
+        System.out.println("------------------------------------------");
+
         System.out.println("User get unprotected Document:");
         library.searchDocument("1-1-1", user1);
         System.out.println("------------------------------------------");
@@ -28,6 +32,5 @@ public class Main {
 
         System.out.println("User get protected Document without permission:");
         library.searchDocument("2-1-1", user2);
-
     }
 }

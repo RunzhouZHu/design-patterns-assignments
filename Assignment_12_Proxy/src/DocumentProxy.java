@@ -30,7 +30,7 @@ public class DocumentProxy implements DocumentInterface {
         // check access here
         AccessControllerService accessControllerService = AccessControllerService.getInstance();
         if (accessControllerService.checkAccess(user.getUsername(), document.getIdentifier())) {
-            System.out.println(user.getUsername() + " access granted");
+            System.out.println("Access granted");
             return document.getContent(user);
         } else {
             throw new AccessDeniedException("User have no permission.");

@@ -8,14 +8,17 @@ public class Library {
         documents.put(document.getIdentifier(), document);
     }
 
-    public void searchDocument(String identifier, User user) throws AccessDeniedException, ClassNotFoundException {
+    public void searchDocument(String identifier, User user) {
         DocumentInterface document = documents.get(identifier);
+        System.out.println("The user " + user.getUsername() + " is accessing " + identifier + "...");
         if(document != null) {
-            System.out.println("The user " + user.getUsername() + " is accessing " + identifier + "...");
-            System.out.println(document.getContent(user));
+            try {
+                System.out.println(document.getContent(user));
+            } catch (AccessDeniedException e) {
+                System.err.println(e.getMessage());
+            }
         } else {
-            throw new ClassNotFoundException("Document not found");
+            System.out.println("Document " + identifier + " not found");
         }
     }
-
 }
