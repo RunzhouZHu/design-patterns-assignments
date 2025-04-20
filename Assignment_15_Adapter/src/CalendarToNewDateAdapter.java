@@ -10,7 +10,7 @@ public class CalendarToNewDateAdapter implements NewDateInterface {
 
     @Override
     public void setDay(int day) {
-        calendar.set(Calendar.DAY_OF_YEAR, day);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class CalendarToNewDateAdapter implements NewDateInterface {
 
     @Override
     public int getDay() {
-        return calendar.get(Calendar.DAY_OF_YEAR);
+        return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override

@@ -5,10 +5,10 @@ public class Main {
 
         c.setDay(200);
 
-        System.out.println( "The date is set at: "+ c.getDay());
+        System.out.println( "The date is set at: "+ c.getDay()  + "/" + c.getMonth() + "/" + c.getYear());
 
         c.advanceDays(50);
-        System.out.println( "The date is advanced at: "+ c.getDay());
+        System.out.println( "The date is advanced at: "+ c.getDay()  + "/" + c.getMonth() + "/" + c.getYear());
 
     }
 }
