@@ -23,7 +23,7 @@ When we change the method in `Assemble` or `Produce`, the `Bike` and `Car` class
 I added a new vehicle - the `EV`, and 2 new workshops - the `AutomatedProduceLine` and `InstantChargeStation`.
 
 I added this new functionality because the origin example in the website did include the case that different abstraction
-could use different implementer. So I added the `AutomatedProduceLine` to put the `Assemble` and `Produce` 
+could use different implementer. So I added the `AutomatedProduceLine` to put the `Assemble` and `Produce`
 together and added a new implementer - the `InstantChargeStation`.
 
 ## 3. Implementation
