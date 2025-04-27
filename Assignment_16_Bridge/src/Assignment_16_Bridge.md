@@ -89,3 +89,9 @@ public class BridgePattern {
 ## 4. Verification
 
 ![](E:\wenjian\123\2nd\design-patterns-assignments\Assignment_16_Bridge\src\output.png "Output")
+123123
+
+## 5. Conclusion
+In conclusion, the customization of the example is completed and works fine.
+I decide to merge the `Assemble` and `Produce` together and them work normally.
+I could also create a new class instead of use the old two.
