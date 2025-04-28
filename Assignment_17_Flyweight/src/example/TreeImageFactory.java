@@ -18,6 +18,4 @@ public class TreeImageFactory {
         }
         return image;
     }
-
-
 }
