@@ -3,7 +3,6 @@ import tiles.Tile;
 import tiles.TileImageFactory;
 import tiles.TileType;
 
-import java.util.Map;
 import java.util.Random;
 
 public class GameController {
@@ -11,20 +10,7 @@ public class GameController {
     private static final int GRID_HEIGHT = 10;
     private Tile[][] tiles;
 
-    /*
-    public GameController() {
-        tiles = new Tile[GRID_WIDTH][GRID_HEIGHT];
-
-        for (int i = 0; i < GRID_WIDTH; i++) {
-            for (int j = 0; j < GRID_HEIGHT; j++) {
-                tiles[i][j] = new Tile(TileImageFactory.getTileImage(TileType.ROAD));
-            }
-        }
-    }
-
-     */
-
-    public Tile[][] generateMap(MapType mapType) {
+    public void generateMap(MapType mapType) {
         tiles = new Tile[GRID_WIDTH][GRID_HEIGHT];
         Random rand = new Random();
         switch (mapType) {
@@ -53,7 +39,6 @@ public class GameController {
                 }
                 break;
         }
-        return tiles;
     }
 
     public Image getTileImage(int row, int col) {
