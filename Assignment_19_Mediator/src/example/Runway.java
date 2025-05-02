@@ -1,0 +1,44 @@
+package example;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Runway {
+
+    private final int OCCUPATION_TIME = 5;
+    private static int count = 0;
+    private int id;
+    private List<Aircraft> queue;
+
+    private Aircraft currentAircraft = null;
+    private int occupiedTimeLeft = 0;
+
+    public Runway() {
+        this.id = ++count;
+        this.queue = new ArrayList<>();
+    }
+
+    public boolean addAircraft(Aircraft aircraft) {
+
+        if (currentAircraft == null) {
+            currentAircraft = aircraft;
+            this.occupiedTimeLeft = OCCUPATION_TIME;
+            return true;
+        }
+
+        queue.add(aircraft);
+        return false;
+    }
+
+    public Aircraft getWaitingAircraft() {
+        if (queue.isEmpty()) {
+            return null;
+        }
+        return queue.removeFirst();
+    }
+
+    public String toString() {
+        return "Runway[id=" + id + "]";
+    }
+
+}
