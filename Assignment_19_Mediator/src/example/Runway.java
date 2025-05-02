@@ -41,4 +41,23 @@ public class Runway {
         return "Runway[id=" + id + "]";
     }
 
+    public boolean isVacant() {
+        return currentAircraft == null;
+    }
+
+    public int getQueueSize() {
+        return queue.size();
+    }
+    public boolean decreaseOccupiedTime() {
+        if (occupiedTimeLeft > 0) {
+            occupiedTimeLeft--;
+        }
+
+        if (occupiedTimeLeft == 0) {
+            currentAircraft = null;
+            return true;
+        }
+        return false;
+    }
+
 }
