@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Assignment_19_Mediator.iml" filepath="$PROJECT_DIR$/Assignment_19_Mediator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assignment_19_Mediator.iml" filepath="$PROJECT_DIR$/assignment_19_Mediator.iml" />
     </modules>
   </component>
 </project>
