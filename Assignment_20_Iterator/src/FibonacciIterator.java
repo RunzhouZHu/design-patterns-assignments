@@ -14,6 +14,10 @@ public class FibonacciIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
+
+        // The Fibonacci sequence calculation is here, in the FibonacciIterator class.
+        // It can also be achieved by create a method in the FibonacciSequence class and
+        // call the class here.
         int next = sequence.getLast()+ sequence.getSecondToLast();
         sequence.setSecondToLast(sequence.getLast());
         sequence.setLast(next);
