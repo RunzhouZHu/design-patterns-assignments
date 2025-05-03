@@ -31,7 +31,7 @@ public class Ring implements Iterable<Integer>, SimpleCollection {
 
     @Override
     public Iterator<Integer> iterator() {
-        return new RingIterator();
+        return new RingIterator(this);
     }
 
 }
