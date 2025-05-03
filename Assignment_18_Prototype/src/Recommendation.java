@@ -1,13 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Recommendation implements Cloneable{
     private String targetAudience;
-    private List<Book> books;
+    private ObservableList<Book> books;
 
     public Recommendation(String targetAudience) {
         this.targetAudience = targetAudience;
-        this.books = new ArrayList<>();
+        this.books = FXCollections.observableArrayList();
     }
 
     public void addBook(Book book) {
@@ -18,6 +18,7 @@ public class Recommendation implements Cloneable{
         books.remove(book);
     }
 
+    // Getter and Setter
     public String getTargetAudience() {
         return targetAudience;
     }
@@ -26,22 +27,24 @@ public class Recommendation implements Cloneable{
         this.targetAudience = targetAudience;
     }
 
+    public ObservableList<Book> getBooks() {
+        return books;
+    }
+
     @Override
     public Recommendation clone() throws CloneNotSupportedException {
-        Recommendation clonedRe = (Recommendation) super.clone();
-        clonedRe.books = new ArrayList<>(this.books);
-        for (Book book : this.books) {
-            clonedRe.books.add(book.clone());
+        try {
+            Recommendation clonedRe =   (Recommendation) super.clone();
+            clonedRe.books = FXCollections.observableArrayList();
+            clonedRe.books.addAll(books);
+            return clonedRe;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
         }
-        return clonedRe;
     }
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder();
-        for (Book book : this.books) {
-            s.append(book.toString()).append("\n");
-        }
-        return targetAudience + " has books : " + s + ".";
+        return targetAudience;
     }
 }
