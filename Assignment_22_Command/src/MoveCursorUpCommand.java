@@ -1,12 +1,12 @@
 public class MoveCursorUpCommand implements Command {
-    private DrawingSystem drawing;
+    private DrawingSystem drawingSystem;
 
     public MoveCursorUpCommand(DrawingSystem drawing) {
-        this.drawing = drawing;
+        this.drawingSystem = drawing;
     }
 
     @Override
     public void execute() {
-        drawing.moveCursorUp();
+        drawingSystem.moveCursorUp();
     }
 }
