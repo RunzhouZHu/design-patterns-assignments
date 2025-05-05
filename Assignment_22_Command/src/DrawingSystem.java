@@ -60,10 +60,8 @@ public class DrawingSystem {
     public void togglePixel() {
         if (matrix[cursor_x][cursor_y] == 1) {
             matrix[cursor_x][cursor_y] = 0;
-            System.out.println(cursor_x + " " + cursor_y + "TOGGLED");
         } else {
             matrix[cursor_x][cursor_y] = 1;
-            System.out.println(cursor_x + " " + cursor_y + "UNTOGGLED");
         }
         gui.draw();
     }
